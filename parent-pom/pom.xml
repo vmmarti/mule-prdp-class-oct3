@@ -41,33 +41,38 @@
 					<version>${mule.maven.plugin.version}</version>
 					<extensions>true</extensions>
 					<configuration>
-                        <cloudhub2Deployment>
-							<uri>https://anypoint.mulesoft.com</uri>
-							<businessGroupId>004c2203-a36a-4016-8c5f-f21a1e64a436</businessGroupId>
-							<environment>Sandbox</environment>
-							<target>Cloudhub-US-East-2</target>
-							<provider>MC</provider>
-						    <muleVersion>4.4.0</muleVersion>
-						    <server>cloudhub-deploy</server><!-- propiedad con las credenciales del settings.xml, en vez de usuario y password -->
-						    <applicationName>${appName}</applicationName>
-						    <replicas>1</replicas>
-						    <vCores>0.1</vCores>
-							<deploymentSettings>
-								<http>
-								  <inbound>
+                                        <cloudhub2Deployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<businessGroupId>004c2203-a36a-4016-8c5f-f21a1e64a436</businessGroupId>
+						<environment>Sandbox</environment>
+						<target>Cloudhub-US-East-2</target>
+						<provider>MC</provider>
+						<muleVersion>4.4.0</muleVersion>
+						<server>cloudhub-deploy</server><!-- propiedad con las credenciales del settings.xml, en vez de usuario y password -->
+						<applicationName>${appName}</applicationName>
+						<replicas>1</replicas>
+						<vCores>0.1</vCores>
+						<deploymentTimeout>240000</deploymentTimeout>
+						<properties>
+							<anypoint.platform.client_id>${ap.client_id}</anypoint.platform.client_id>
+                                			<anypoint.platform.client_secret>${ap.client_secret}</anypoint.platform.client_secret>
+						</properties>
+						<deploymentSettings>
+							<http>
+								<inbound>
 									<!--<publicUrl>${publicURL}</publicUrl>
 									<forwardSslSession>true</forwardSslSession>-->
 									<lastMileSecurity>true</lastMileSecurity>
-								  </inbound>
-								</http>
-						    </deploymentSettings>
-						    <integrations>
-								<services>
-									<objectStoreV2>
-									  <enabled>true</enabled>
-									</objectStoreV2>
-								</services>
-						    </integrations>
+								</inbound>
+							</http>
+						</deploymentSettings>
+						<integrations>
+							<services>
+								<objectStoreV2>
+									<enabled>true</enabled>
+								</objectStoreV2>
+							</services>
+						</integrations>
                         </cloudhub2Deployment>
                     </configuration>
 				</plugin>
