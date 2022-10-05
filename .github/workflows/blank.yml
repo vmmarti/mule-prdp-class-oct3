@@ -96,21 +96,10 @@ jobs:
     - uses: s4u/maven-settings-action@v2.6.0
       with:
         servers: |
-          servers: |
           [{
               "id": "anypoint-exchange-v3",
               "username": "${{ secrets.ANYPOINT_USERNAME }}",
               "password": "${{ secrets.ANYPOINT_PASSWORD }}"
-          },
-          {
-              "id": "anypoint-exchange-v3-student-deployment",
-              "username": "${{ secrets.ANYPOINT_USERNAME }}",
-              "password": "${{ secrets.ANYPOINT_PASSWORD }}"
-          },
-          {
-                "id": "releases-ee",
-                "username": "${{ secrets.RELEASES_USERNAME }}",
-                "password": "${{ secrets.RELEASES_PASSWORD }}"
           }]
     - name: Publish artifact to Exchange
       run: |
@@ -147,15 +136,13 @@ jobs:
               "password": "${{ secrets.ANYPOINT_PASSWORD }}"
           },
           {
-              "id": "releases-ee",
-              "username": "${{ secrets.RELEASES_USERNAME }}",
-              "password": "${{ secrets.RELEASES_PASSWORD }}"
+                "id": "releases-ee",
+                "username": "${{ secrets.RELEASES_USERNAME }}",
+                "password": "${{ secrets.RELEASES_PASSWORD }}"
           }]
     - name: Deploy to CloudHub 2
       env:
         AUTHOR: "Andres Morales"
       run: |
         artifactName=$(ls *.jar | head -1)
-        mvn deploy --file check-in-papi-app/pom.xml -DmuleDeploy \
-        -Dap.client_id=${{ secrets.AP_CLIENT_ID }} \ 
-        -Dap.client_secret=${{ secrets.AP_CLIENT_SECRET }}
+        mvn deploy --file check-in-papi-app/pom.xml -DmuleDeploy -Dap.client_id="${{ secrets.AP_CLIENT_ID }}" -Dap.client_secret="${{ secrets.AP_CLIENT_SECRET }}"
