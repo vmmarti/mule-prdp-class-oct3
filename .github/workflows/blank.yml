@@ -100,6 +100,16 @@ jobs:
               "id": "anypoint-exchange-v3",
               "username": "${{ secrets.ANYPOINT_USERNAME }}",
               "password": "${{ secrets.ANYPOINT_PASSWORD }}"
+          },
+          {
+              "id": "anypoint-exchange-v3-student-deployment",
+              "username": "${{ secrets.ANYPOINT_USERNAME }}",
+              "password": "${{ secrets.ANYPOINT_PASSWORD }}"
+          },
+          {
+              "id": "releases-ee",
+              "username": "${{ secrets.RELEASES_USERNAME }}",
+              "password": "${{ secrets.RELEASES_PASSWORD }}"
           }]
     - name: Publish artifact to Exchange
       run: |
@@ -131,14 +141,9 @@ jobs:
               "password": "${{ secrets.ANYPOINT_PASSWORD }}"
           },
           {
-              "id": "anypoint-exchange-v3-student-deployment",
-              "username": "${{ secrets.ANYPOINT_USERNAME }}",
-              "password": "${{ secrets.ANYPOINT_PASSWORD }}"
-          },
-          {
-                "id": "releases-ee",
-                "username": "${{ secrets.RELEASES_USERNAME }}",
-                "password": "${{ secrets.RELEASES_PASSWORD }}"
+                "id": "cloudhub-deploy",
+                "username": "${{ secrets.ANYPOINT_USERNAME }}",
+                "password": "${{ secrets.ANYPOINT_PASSWORD }}"
           }]
     - name: Deploy to CloudHub 2
       env:
